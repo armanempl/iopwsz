@@ -49,19 +49,20 @@
 <!--   -->
             <section class="counter">
             <?php
-$dbc = mysqli_connect('127.0.0.1', 'root','','io');
-$query = mysqli_query($dbc, "SELECT `id_ksiazka`,`tytul`,`autor`, `cena`, `ilosc_odslon`, `img` FROM `asortyment` ORDER BY `ilosc_odslon` DESC LIMIT 5;");
-while ($r = mysqli_fetch_array($query)){
-    echo '<div class="count_el">';
-    echo '<img src='. $r[5]. ' style="max-width: 100px;"><br>';
-    echo $r[1]. "<br>";
-    echo $r[2]. "<br>";
-    echo "Cena: ". $r[3]. " zł <br>";
-    echo "Zakupiono ". $r[4]. " razy";
-    echo "</div>";
-}
-mysqli_close($dbc);
-?>
+            require_once('connect.php');
+            $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_DATABASE); 
+            $query = mysqli_query($dbc, "SELECT `id_ksiazka`,`tytul`,`autor`, `cena`, `ilosc_odslon`, `img` FROM `asortyment` ORDER BY `ilosc_odslon` DESC LIMIT 5;");
+               while ($r = mysqli_fetch_array($query)){
+                  echo '<div class="count_el">';
+                  echo '<img src='. $r[5]. ' style="max-width: 100px;"><br>';
+                  echo $r[1]. "<br>";
+                  echo $r[2]. "<br>";
+                  echo "Cena: ". $r[3]. " zł <br>";
+                  echo "Zakupiono ". $r[4]. " razy";
+                  echo "</div>";
+               }
+            mysqli_close($dbc);
+            ?>
             </section>
 
 
