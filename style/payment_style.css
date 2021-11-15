@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.str {
+    margin-top: 5%;
+    margin-left: 25%;
+    margin-right: 25%;
+    border: 1px solid teal;
+    border-radius: 15px;
+}
+
+header {
+text-align: center;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+.content{
+    margin: 5%;
+}
+
+footer {
+    clear: both;
+    text-align: center;
+}
+
