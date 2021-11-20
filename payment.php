@@ -22,7 +22,6 @@
         <input type="submit" value="Zapłać">
         </form> 
     </section>
-
     </main>
 </body>
 </html>
