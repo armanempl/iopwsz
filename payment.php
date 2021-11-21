@@ -20,6 +20,7 @@
         Kwota zapłaty: <br>
         Kliknij tutaj, aby opłacić zamówienie: <br><br>
         <input type="submit" value="Zapłać">
+
         </form> 
     </section>
     </main>
