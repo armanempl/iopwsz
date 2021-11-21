@@ -1,0 +1,108 @@
+
+<?php
+            require_once('connect.php');
+            $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_DATABASE); 
+            $query = mysqli_query($dbc, "SELECT `id_ksiazka`,`tytul`,`autor`, `cena`, `ilosc_odslon`, `img` FROM `asortyment`");
+               while ($r = mysqli_fetch_array($query)){
+                  echo '<div class="count_el">';
+                  echo '<img src='. $r[5]. ' style="max-width: 100px;"><br>';
+                  echo $r[1]. "<br>";
+                  echo $r[2]. "<br>";
+                  echo "Cena: ". $r[3]. " zł <br>";
+                  echo "Zakupiono ". $r[4]. " razy";
+                  echo "      
+                        <form id='sendQ' action='koszyk_save.php' method='POST'>
+                        <input type='text' name='tytul' hidden value='$r[1]'></input>
+                            <button type='submit' class='wyslij'>Dodaj do koszyka</button>
+                        </form>
+
+                        <style>
+                            .imgelement{
+                                width:auto;
+                                height: 50%;
+                            }
+                            .elementy{
+                                display: flex;
+                                padding: 25px;
+                                margin-top:450px;
+                            }
+                            .element{
+                                padding: 25px;
+                                border: 1px black solid;
+                                margin: 5px;
+                            }
+                            .dodaj{
+                                color:black;
+                            }
+                            .wyslij{
+                                width: 80%;
+                                background-color: lightgrey;
+                                color:green;
+                                font-size:20px;
+                                border:none;
+                                margin: 10px;
+                                padding:30px;
+                            }
+                            .wyslij:hover{
+                                color: blue;
+                                background-color: lightgreen;
+                                opacity: 40;
+                                border-bottom: 1px solid darkgreen;
+                             }
+                        </style>
+                        ";
+                  echo "</div>";
+               }
+            mysqli_close($dbc);
+            ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if(isset($_POST["add_to_cart"]))
+{
+	if(isset($_SESSION["shopping_cart"]))
+	{
+		$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+		if(!in_array($_GET["id"], $item_array_id))
+		{
+			$count = count($_SESSION["shopping_cart"]);
+			$item_array = array(
+				'item_id'			=>	$_GET["id"],
+				'item_name'			=>	$_POST["hidden_name"],
+				'item_price'		=>	$_POST["hidden_price"],
+				'item_quantity'		=>	$_POST["quantity"]
+			);
+			$_SESSION["shopping_cart"][$count] = $item_array;
+		}
+		else
+		{
+			echo '<script>alert("Item Already Added")</script>';
+		}
+	}
+	else
+	{
+		$item_array = array(
+			'item_id'			=>	$_GET["id"],
+			'item_name'			=>	$_POST["hidden_name"],
+			'item_price'		=>	$_POST["hidden_price"],
+			'item_quantity'		=>	$_POST["quantity"]
+		);
+		$_SESSION["shopping_cart"][0] = $item_array;
+	}
+}
