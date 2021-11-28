@@ -21,7 +21,7 @@
         document.getElementsByClassName('sh2')[0].style.display = 'block';
     }
 </script>
-    <title>Zamówienie</title>
+    <title>Zamówienie - Księgarnia iBook</title>
 </head>
 <body>
 
