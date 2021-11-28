@@ -61,6 +61,16 @@ echo "Następne id: ".$maxplus. "<br>";
 
 foreach($_SESSION["koszyk"] as $keys => $values)
      {
+         $id_ksiazki = $values["id_ksiazki"];
+         $ilosc = $values["ilosc"];
+         $ilosc_query = mysqli_query($dbc, "SELECT `ilosc_odslon` FROM `asortyment` WHERE `id_ksiazka` = '$id_ksiazki';");
+         while ($i = mysqli_fetch_array($ilosc_query)){
+            $ilosc_stare = $i[0];
+            $ilosc_nowe = $ilosc_stare + $ilosc;
+            echo $ilosc_stare. "<br>";
+            echo $ilosc_nowe. "<br>";
+        }
+        mysqli_query($dbc, "UPDATE `asortyment` SET `ilosc_odslon` = '$ilosc_nowe' WHERE `id_ksiazka` = '$id_ksiazki';");
         $total = $total + ($values["ilosc"] * $values["cena"]);
          echo "Tytul: ".$values["tytul"]. "<br>";
          echo "Ilość: ".$values["ilosc"]. "<br>";

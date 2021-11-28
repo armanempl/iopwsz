@@ -109,7 +109,7 @@
                                 $wydawnictwo = $row['wydawnictwo'];
                                 $gatunek = $row['gatunek'];
                                 $zdjecie = $row['img'];
-                                $stan = $row['ilosc_szt'];
+                                $stan = $row['ilosc_odslon'];
                                 echo '<div class="count_el">';
                                 echo '<img src='. $zdjecie. ' style="max-width: 100px;"><br>';
                                 echo $tytul. "<br>";
