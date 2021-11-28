@@ -32,8 +32,10 @@
             </nav>
             <div class="icons">
                <div>
-                  <input type="text" placeholder="wyszukaj książkę" />
-                  <i class="fas fa-search"></i>
+                  <form action="search.php" method="POST">
+                  <input type="text" placeholder="Wyszukaj książkę" id="search" name="search" style="margin-right: 15%;">
+                  <input type="submit" style="width: 100px; height: 40px; margin-left: 18%;" value="Szukaj">
+                  </form>
                </div>
 
                <i class="fas fa-book">iBOOK</i>
