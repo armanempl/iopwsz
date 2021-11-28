@@ -14,10 +14,15 @@
     <div class="logo"><img src="images/payment_logo.png"></div>
     </header>
     <section class="content">
-        <form action="payment_success.php" method="POST">
-        Zamówienie: <br>
-        ID zamówienia: <br>
-        Kwota zapłaty: <br>
+    <?php
+    $id = $_GET['id'];
+    $cena = $_GET['cena'];
+    echo '<form action="payment_success.php?id='.$id.'" method="POST">';
+    echo   'Zamówienie: <br>';
+     echo 'ID zamówienia: '.$id. '<br>';
+    echo 'Kwota zapłaty: '.$cena. ' zł<br>';
+        ?>
+
         Kliknij tutaj, aby opłacić zamówienie: <br><br>
         <input type="submit" value="Zapłać">
 

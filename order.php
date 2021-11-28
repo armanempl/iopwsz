@@ -45,10 +45,44 @@
             </nav>
     <!-- początek zamówienia -->
     <section class="order_main">
-    <form action="order_sum.php" method="POST">
+    <form action="posredniki/order_ordersum.php" method="POST">
         <section class="order_header"><h2>Zamówienie</h2></section>
-        <section class="order_spacer"><h3>Przedmioty znajdujące się w koszyku</h3></section>
-        <section class="order_zamowienie">Przedmioty<br><b>Łączna kwota:</b></section>
+        <section class="order_spacer"><h3>Przedmioty znajdujące się w koszyku</h3>
+        
+        </section>
+        <section class="order_zamowienie">
+        <table class="table table-bordered">
+					<tr>
+						<th width="70%">Tytuł</th>
+						<th width="15%">Ilość</th>
+						<th width="15%">Razem</th>
+					</tr>
+                    <?php
+            session_start();
+			if(!empty($_SESSION["koszyk"]))
+				{
+					$total = 0;
+					foreach($_SESSION["koszyk"] as $keys => $values)
+					    {
+                            
+                            $total = $total + ($values["ilosc"] * $values["cena"]);
+                            ?>
+                            
+                            <tr>
+                                <!--<td><?php echo $values["id_ksiazki"]; ?></td> -->
+						        <td><?php echo $values["tytul"]; ?></td>
+						        <td><?php echo $values["ilosc"]; ?></td>
+						        <td><?php echo number_format($values["ilosc"] * $values["cena"], 2);?> zł</td>
+					            </tr>
+                            
+                            <?php
+                            
+                        }
+                }
+		?>
+        </table>
+        </br></br>
+        <b>Łączna kwota:  <?php echo $total." zł"; ?></b></section>
         <!-- tu trzeba z koszyka wziąć przedmioty -->
         <section class="order_spacer"><h3>Wysyłka</h3></section>
 
@@ -57,15 +91,33 @@
             <input type="radio" name="Radio" id="Radio" value="same" onchange="show()" required checked>Taki sam 
             <input type="radio" name="Radio" id="Radio" value="different" onchange="show2()" required>Inny<br>
         <div class="order_adres">
-        <div class="sh1"><b>Adres dostawy jest taki sam jak adres podany przy rejestracji konta.</b></div>
+        <div class="sh1">
+        <?php
+        $login = $_SESSION['login'];
+        require_once('connect.php');
+        $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_DATABASE);
+        $query = mysqli_query($dbc, "SELECT `Kraj`, `Miasto`,`Kod`,`Ulica`,`Numer_domu` FROM `konto` WHERE `login` = '$login';");
+        while ($r = mysqli_fetch_array($query)){
+            echo '<b>Kraj: </b>'. $r[0]. '<br><br>';
+            echo '<b>Miasto: </b>'. $r[1]. '<br><br>';
+            echo '<b>Kod pocztowy: </b>'. $r[2]. '<br><br>';
+            echo '<b>Ulica: </b>'. $r[3]. '<br><br>';
+            echo '<b>Numer domu: </b>'. $r[4];
+        }
+        ?>
+
+        </div>
+        
+        
         <div class="sh2" style="display:none;">
-        <b>Kraj:</b><input type="text" id="kraj" name="kraj" required><br><br>
-        <b>Miasto:</b><input type="text" id="miasto" name="miasto" required><br><br>
-        <b>Kod pocztowy:</b> <input type="text" id="kod" name="kod" required><br><br>
-        <b>Ulica: </b><input type="text" id="ulica" name="ulica" required><br><br>
-        <b>Numer domu:</b> <input type="text" id="ulica" name="ulica" required>
+        <b>Kraj:</b><input type="text" id="kraj" name="kraj"><br><br>
+        <b>Miasto:</b><input type="text" id="miasto" name="miasto"><br><br>
+        <b>Kod pocztowy:</b> <input type="text" id="kod" name="kod"><br><br>
+        <b>Ulica: </b><input type="text" id="ulica" name="ulica"><br><br>
+        <b>Numer domu:</b> <input type="text" id="numer_domu" name="numer_domu">
         </div>
         </div>
+
         <b>Rodzaj przesyłki:<br></b>
         <input type="radio" name="ship" id="ship" value="list" required>List polecony priorytetowy<br>
         <input type="radio" name="ship" id="ship" value="kurier" required>Kurier DeHaEl<br>
@@ -84,7 +136,6 @@
         </section>
     </section>
 
-    <script src="jquery-3.3.1.min.js"><script>
-    <script src="js/show_address.js" type="text/javascript"></script>
+    <script src="jquery-3.3.1.min.js"></script>
 </body>
 </html>

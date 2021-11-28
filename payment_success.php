@@ -15,15 +15,21 @@
     </header>
     <section class="content">
         <?php
+        session_start();
+        require_once('connect.php');
+        $login = $_SESSION['login'];
+        $id=  $_GET['id'];
+        $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_DATABASE);
+        $query = mysqli_query($dbc, "UPDATE `zamowienie` SET `status_zamowienia` = 'Zaksięgowano' WHERE `zamowienie`.`id_zamowienie` = '$id';");
         echo '<script type="text/javascript">
         function timer() {
-        var text1 = "Zamówienie pomyślnie opłacone, przekierowanie na stronę zamówienia...";
+        var text1 = "Realizacja płatności zakończona sukcesem, przekierowanie na stronę zamówienia...";
         document.getElementById("text").innerHTML = text1;
         }
         setTimeout(timer,3000);
         </script>';
         echo '<div id="text">Proszę czekać...</div>';
-        header('Refresh: 6; URL=index.php'); //jak będzie strona zamówienia, to tu będzie dodany get z wartością opłacony żeby tam się zmieniło z Do zapłacenia na Opłacony
+        header('Refresh: 6; URL=order_sum.php?id_zamowienia='.$id); //jak będzie strona zamówienia, to tu będzie dodany get z wartością opłacony żeby tam się zmieniło z Do zapłacenia na Opłacony
         ?>
     </section>
 

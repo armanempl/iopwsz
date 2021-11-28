@@ -26,48 +26,109 @@
 <body>
 
 <header>
-            <nav>
+<nav>
                <ul class="LogReg">
-                  <i class="fas fa-unlock"></i>
-
-
-                  <li><a href="Log.php">Logowanie</a></li>
-                  <i class="fas fa-lock"></i>
-                  <li><a href="Reg.php">Rejestracja</a></li>
+                  
+                  <li><a href="konto.php">Konto</a></li>
+                  
+                  <li><a href="koszyk.php">Koszyk</a></li>
+                  
+                  <li><a href="wyloguj.php">Wyloguj</a></li>
                </ul>
 
                <ul class="nav">
                   <li><a href="#" class="ks">Książki</a></li>
                   <li><a href="#" class="cz">Czasopisma</a></li>
                   <li><a href="#" class="pdr">Podręczniki</a></li>
-                  <li><a href="#" class="art">Artykuły naukowe</a></li>
+                  <li><a href="#" class="art">Artkuły naukowe</a></li>
                </ul>
             </nav>
     <!-- początek zamówienia -->
     <section class="order_main">
-    <form action="payment.php" method="POST">
+    <form action="posredniki/order_payment.php" method="POST">
         <section class="order_header"><h2>Zamówienie</h2></section>
         <section class="order_spacer"><h3>Przedmioty znajdujące się w koszyku</h3></section>
-        <section class="order_zamowienie">Przedmioty<br><b>Łączna kwota:</b></section>
+        <section class="order_zamowienie">
+        <table class="table table-bordered">
+					<tr>
+						<th width="70%">Tytuł</th>
+						<th width="15%">Ilość</th>
+						<th width="15%">Razem</th>
+					</tr>
+        <?php
+            session_start();
+			if(!empty($_SESSION["koszyk"]))
+				{
+					$total = 0;
+					foreach($_SESSION["koszyk"] as $keys => $values)
+					    {
+                            
+                            $total = $total + ($values["ilosc"] * $values["cena"]);
+                            ?>
+                            
+                            <tr>
+						        <td><?php echo $values["tytul"]; ?></td>
+						        <td><?php echo $values["ilosc"]; ?></td>
+						        <td><?php echo number_format($values["ilosc"] * $values["cena"], 2);?> zł</td>
+					            </tr>
+                            
+                            <?php
+                            
+                        }
+                }
+		?>
+        </table>
+        </br></br>
+        <b>Łączna kwota: <?php echo $total." zł"; ?></b></section>
         <!-- tu trzeba z koszyka wziąć przedmioty -->
         <section class="order_spacer"><h3>Wysyłka</h3></section>
         <section class="order_ship">
-        <b>Adres wysyłki:<br></b>
-        <b>Rodzaj przesyłki:<br></b>
-        </section>
-        <section class="order_spacer"><h3>Płatność</h3></section>
+        <b>Adres wysyłki: <br><br></b>
+        <?php
+        $login = $_SESSION['login'];
+        $id_zamowienia = $_GET['id_zamowienia'];
+        require_once('connect.php');
+        $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_DATABASE);
+        $query = mysqli_query($dbc,"SELECT * FROM `zamowienie` WHERE `id_zamowienie` = '$id_zamowienia';");
+        while ($r = mysqli_fetch_array($query)) {
+        $ship = $r[1];
+        $pay = $r[2];
+        $status = $r[4];
+        echo '<b>Kraj: </b>'. $r[6]. '<br>';
+        echo '<b>Miasto: </b>'. $r[7]. '<br>';
+        echo '<b>Kod pocztowy: </b>'. $r[8]. '<br>';
+        echo '<b>Ulica: </b>'. $r[9]. '<br>';
+        echo '<b>Numer domu: </b>'. $r[10]. '<br>'; 
+        }
+        
 
-        <section class="order_payment"><b>Sposób płatności:</b><br><br>
+        
+        
+        echo '<br>';
+        echo '<b>Rodzaj przesyłki: </b>';
+        echo $ship;
+        echo '</section>';
+        echo '<section class="order_spacer"><h3>Płatność</h3></section>';
 
-        </section>
+        echo '<section class="order_payment"><b>Sposób płatności: </b>';
+        echo $pay;
+        echo '</section>';
 
-        <section class="order_spacer"><h3>Status zamówienia: </h3></section>
+        echo '<section class="order_spacer"><h3>Status zamówienia: '. $status. '</h3>';
+        echo '</section>';
+        echo '<section class="order_submit">';
+        if ($status == "Zaksięgowano") {
+        echo '<b style="color: white;"><h3>Zamówienie pomyślnie opłacone</h3></b>';
+        }
+        elseif ($status == "Nowe zamówienie"){
 
-        <section class="order_submit">
-        <b style="color: white;"><h3>Aby opłacić zamówienie, przejdź do strony płatności:</h3><br></b>
-        <input type="submit" value="Potwierdź" style="width: 100px; height: 50px;">
-        </section>
-    </form>
+        echo '<b style="color: white;"><h3>Aby opłacić zamówienie, przejdź do strony płatności:</h3><br></b>';
+        echo '<input type="submit" value="Potwierdź" style="width: 100px; height: 50px;">';
+
+    }
+    echo '</section>';
+        ?>
+        </form>
     </section>
 
     <script src="jquery-3.3.1.min.js"><script>

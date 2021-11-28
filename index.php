@@ -1,5 +1,6 @@
 <?php
    session_start();
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,10 +25,10 @@
                </ul>
 
                <ul class="nav">
-                  <li><a href="#" class="ks">Książki</a></li>
-                  <li><a href="#" class="cz">Czasopisma</a></li>
-                  <li><a href="#" class="pdr">Podręczniki</a></li>
-                  <li><a href="#" class="art">Artkuły naukowe</a></li>
+                  <li><a href="ksiazki.php" class="ks">Książki</a></li>
+                  <li><a href="czasop.php" class="cz">Czasopisma</a></li>
+                  <li><a href="podr.php" class="pdr">Podręczniki</a></li>
+                  <li><a href="art.php" class="art">Artkuły naukowe</a></li>
                </ul>
             </nav>
             <div class="icons">
