@@ -97,7 +97,7 @@
                         $row = $query->fetch_assoc();
                         $ile = $query->num_rows;
                         for($i = 1 ; $i <= $ile ; $i++){
-                           if($query2 = mysqli_query($connection, "Select * From asortyment where id_ksiazka = '$i' AND gatunek='ksiazka'")){
+                           if($query2 = mysqli_query($connection, "Select * From asortyment where id_ksiazka = '$i' AND gatunek='szkolne'")){
                               if($query2->num_rows > 0){
                                 $id_ksiazki = $i;
                                 $row = $query2->fetch_assoc();

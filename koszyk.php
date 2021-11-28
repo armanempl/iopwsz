@@ -37,10 +37,9 @@ if(isset($_GET["action"]))
                </ul>
 
                <ul class="nav">
-                  <li><a href="ksiazki.php" class="ks">Książki</a></li>
+               <li><a href="ksiazki.php" class="ks">Książki</a></li>
                   <li><a href="czasop.php" class="cz">Czasopisma</a></li>
-                  <li><a href="podr.php" class="pdr">Podręczniki</a></li>
-                  <li><a href="art.php" class="art">Artkuły naukowe</a></li>
+                  <li><a href="szkolne.php" class="skl">Literatura szkolna</a></li>
                </ul>
             </nav>
             <div class="icons">
@@ -101,15 +100,16 @@ if(isset($_GET["action"]))
                <input type="submit" value="Usuń koszyk" class="none">
             </form>
          </div>
-         <div>
+         <div style="height: 69px;">
+         <a href="order.php">Przejdź do płatności</a>
             <form action="order.php">
-               <input type="submit" value="Przejdź do podsumowania" class="none">
+               <input type="submit" value="Przejdź do płatności" class="none">
             </form>
          </div>    
         </main>
         
          <footer>
-            <a href="order.php">Przejdź do płatności</a>
+
             <div>Kontakt:</div>
             <div>Telefon: 234 523 523</div>
             <div>Email: i@Book.pl</div>

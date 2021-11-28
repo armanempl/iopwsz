@@ -24,10 +24,9 @@
                </ul>
 
                <ul class="nav">
-                  <li><a href="#" class="ks">Książki</a></li>
-                  <li><a href="#" class="cz">Czasopisma</a></li>
-                  <li><a href="#" class="pdr">Podręczniki</a></li>
-                  <li><a href="#" class="art">Artkuły naukowe</a></li>
+               <li><a href="ksiazki.php" class="ks">Książki</a></li>
+                  <li><a href="czasop.php" class="cz">Czasopisma</a></li>
+                  <li><a href="szkolne.php" class="skl">Literatura szkolna</a></li>
                </ul>
             </nav>
             <div class="icons">
