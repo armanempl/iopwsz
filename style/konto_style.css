@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+ }
+ 
+ body {
+    font-family: Arial, Helvetica, sans-serif;
+ 
+    background-color: #d9d9d9;
+ }
+
+.konto_main {
+    margin: 1% 20%;
+    height: 100%;
+}
+
+.konto_nav {
+    height: 100%;
+    width: 21%;
+    margin-right: 1%;
+    border-radius: 15px;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(5, 49, 75);
+    color: white;
+    font-size: 24px;
+}
+
+
+.konto_content {
+    margin-left:23%;
+    height: 100%;
+    width: 50%;
+    padding: 1%;
+    border-radius: 15px;
+    background-color: #f2b138;
+}
+
+
+.konto_dane {
+    height: 15%;
+    padding: 2% 1% 2% 5%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom: 1px solid rgb(2, 17, 26);
+}
+
+.konto_dane:hover {
+    background-color: rgb(8, 64, 97);
+}
+
+.konto_dane:active {
+    background-color: rgb(2, 17, 26);
+}
+
+.konto_haslo {
+    height: 15%;
+    padding: 2% 1% 2% 5%;
+    border-bottom: 1px solid rgb(2, 17, 26);
+}
+
+.konto_haslo:hover {
+    background-color: rgb(8, 64, 97);
+}
+
+.konto_haslo:active {
+    background-color: rgb(2, 17, 26);
+}
+
+.konto_historia {
+    height: 15%;
+    padding: 2% 1% 2% 5%;
+    border-bottom: 1px solid rgb(2, 17, 26);
+}
+
+.konto_historia:hover {
+    background-color: rgb(8, 64, 97);
+}
+
+.konto_historia:active {
+    background-color: rgb(2, 17, 26);
+}
+
+.konto_admin_ilosc {
+    height: 15%;
+    padding: 2% 1% 2% 5%;
+    border-bottom: 1px solid rgb(2, 17, 26);
+
+}
+
+.konto_admin_ilosc:hover {
+    background-color: rgb(8, 64, 97);
+
+}
+
+.konto_admin_ilosc:active {
+    background-color: rgb(2, 17, 26);
+
+}
+
+.konto_admin_addbook {
+    height: 15%;
+    padding: 2% 1% 2% 5%;
+    border-bottom: 1px solid rgb(2, 17, 26);
+}
+
+.konto_admin_addbook:hover {
+    background-color: rgb(8, 64, 97);
+}
+
+.konto_admin_addbook:active {
+    background-color: rgb(2, 17, 26);
+}
+
+.konto_admin_addadmin {
+    height: 15%;
+    padding: 2% 1% 2% 5%;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.konto_admin_addadmin:hover {
+    background-color: rgb(8, 64, 97);
+}
+
+.konto_admin_addadmin:active {
+    background-color: rgb(2, 17, 26);
+}
+
+.wrapper {
+    max-width: 1600px;
+    margin: 0 auto;
+    box-shadow: 2px 2px 10px #000000, -2px -2px 10px #000000;
+ }
+ 
+ .blur {
+    filter: blur(5px);
+ }
+ 
+ .container {
+    display: none;
+    position: fixed;
+ 
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(204, 204, 204);
+    opacity: 0.2;
+    z-index: 3;
+ }
+ 
+ .Log {
+    height: 30vh;
+    width: 100%;
+    margin: 0 auto;
+    /* display: none; */
+ }
+ 
+ div.Log input {
+    display: absolute;
+    width: 300px;
+    font-size: 24px;
+    padding: 20px 30px;
+    text-align: center;
+ }
+ 
+ div.Log input:nth-child(1) {
+    left: 500px;
+    top: 300px;
+ }
+ div.Log input:nth-child(2) {
+    left: 500px;
+    top: 350px;
+ }
+ div.Log input:nth-child(3) {
+    left: 500px;
+    top: 400px;
+ }
+ 
+ header {
+    position: fixed;
+    opacity: 0.9;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 2;
+ }
+ 
+ ul {
+    text-align: center;
+    background-color: #003f63;
+ }
+ 
+ li {
+    display: inline-block;
+ }
+ 
+ a {
+    background-color: transparent;
+    color: white;
+    padding: 20px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+ }
+ 
+ .nav li a {
+    font-size: 24px;
+ }
+ 
+ a:hover {
+    background-color: #4ede9b;
+    border: 1px solid black;
+    margin: -1px;
+    border-radius: 10px;
+ }
+ 
+ .LogReg li a:hover {
+    background-color: #58e5fa;
+ }
+ 
+ .LogReg {
+    font-weight: 900;
+    background-color: #f2b138;
+    text-align: right;
+ }
+ 
+ .fa-unlock,
+ .fa-lock {
+    margin-right: 20px;
+    margin-left: 20px;
+    color: #fff;
+ }
+ 
+ .fa-unlock:hover,
+ .fa-lock:hover {
+    color: #759ba8;
+    cursor: default;
+ }
+ 
+ .icons {
+    display: flex;
+    flex-basis: 50%;
+    justify-content: space-around;
+    height: 100px;
+    background-color: #a1a5a6;
+ }
+ 
+ .icons i {
+    font-size: 40px;
+    color: #003f63;
+    line-height: 100px;
+ }
+ 
+ i:hover {
+    cursor: pointer;
+    color: white;
+ }
+
+ .linki {
+     text-decoration: none;
+ }
+
+ .linki:hover {
+     color:rgb(5, 49, 75);
+ }
+
+ .linki:active {
+     color: rgb(2, 17, 26);
+ }
+
+ #admin_tytul {
+     width: 400px;
+ }

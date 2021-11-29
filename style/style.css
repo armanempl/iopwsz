@@ -229,6 +229,9 @@ footer {
    text-align: center;
    justify-content: space-around;
    margin: 0 auto;
+   flex-wrap: wrap;
+   overflow-y: scroll;
+   max-width: 1600px;
 }
 
 .count_el {
